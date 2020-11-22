@@ -2,7 +2,7 @@ import gallery from "./gallery-tems.js";
 const galleryToDOM = document.querySelector("ul.js-gallery");
 const modal = document.querySelector(".js-lightbox");
 let indexCurrenElement;
-//Разметка элемента галереи//
+//Разметка элемента галереи
 const makeGallery = function (array, ul) {
   let NodeList = gallery.map((value, index) => {
     let item = document.createElement("li");
@@ -23,6 +23,13 @@ const makeGallery = function (array, ul) {
   });
 
   galleryToDOM.append(...NodeList);
+};
+//Закрытие модального окна
+const checkModal = function (e) {
+  if (e.target === document.querySelector(".lightbox__overlay")) {
+    modalIsClose();
+  }
+  return;
 };
 
 const getItem = function (e) {
@@ -51,13 +58,7 @@ const changeImg = function (value) {
     image.setAttribute("src", value);
   }
 };
-
-const checkModal = function (e) {
-  if (e.target === document.querySelector(".lightbox__overlay")) {
-    modalIsClose();
-  }
-  return;
-};
+//Пролистывание изображений
 
 const checkButton = function (e) {
   if (indexCurrenElement === undefined) {
@@ -91,7 +92,7 @@ const moveInGallery = function (indexToMove) {
       .sourse
   );
 };
-
+//Открытие картинок в текущем окне
 makeGallery(gallery, galleryToDOM);
 galleryToDOM.addEventListener("click", getItem);
 document
