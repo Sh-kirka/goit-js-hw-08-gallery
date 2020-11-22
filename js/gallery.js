@@ -1,8 +1,9 @@
 import gallery from "./gallery-tems.js";
-const galleryInDOM = document.querySelector("ul.js-gallery");
+const galleryToDOM = document.querySelector("ul.js-gallery");
 const modal = document.querySelector(".js-lightbox");
 let indexCurrenElement;
-const renderGallery = function (array, ul) {
+//Разметка элемента галереи//
+const makeGallery = function (array, ul) {
   let NodeList = gallery.map((value, index) => {
     let item = document.createElement("li");
     item.classList.add("gallery__item");
@@ -21,10 +22,10 @@ const renderGallery = function (array, ul) {
     return item;
   });
 
-  galleryInDOM.append(...NodeList);
+  galleryToDOM.append(...NodeList);
 };
 
-const getItemfromDOMGallery = function (e) {
+const getItem = function (e) {
   e.preventDefault();
   if (e.target === e.currentTarget) {
     return;
@@ -91,8 +92,8 @@ const moveInGallery = function (indexToMove) {
   );
 };
 
-renderGallery(gallery, galleryInDOM);
-galleryInDOM.addEventListener("click", getItemfromDOMGallery);
+makeGallery(gallery, galleryToDOM);
+galleryToDOM.addEventListener("click", getItem);
 document
   .querySelector('button[data-action="close-lightbox"]')
   .addEventListener("click", modalIsClose);
